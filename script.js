@@ -386,13 +386,33 @@ function render(){
 
     ctx.stroke();
 
-    /*
-    Aplicar Scanline Fill
-    */
+/*
+Obtener color seleccionado
+*/
+const color = document.getElementById(
+    "fillColor"
+).value;
+
+
+/*
+Verificar si se debe rellenar
+*/
+const enableFill =
+    document.getElementById(
+        "enableFill"
+    ).checked;
+
+
+/*
+Aplicar Scanline Fill
+*/
+if(enableFill){
+
     scanline.fill(
         polygon,
-        "skyblue"
+        color
     );
+}
 }
 
 /**
