@@ -337,6 +337,64 @@ class ScanlineFill {
     }
 }
 
+function render(){
+
+    /*
+    Limpiar canvas
+    */
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    /*
+    Obtener polígono seleccionado
+    */
+    const index = Number(
+        document.getElementById(
+            "polygonSelect"
+        ).value
+    );
+
+    const polygon = polygons[index];
+
+    /*
+    Dibujar contorno
+    */
+    ctx.beginPath();
+
+    ctx.moveTo(
+        polygon[0].x,
+        polygon[0].y
+    );
+
+    for(let i = 1; i < polygon.length; i++){
+
+        ctx.lineTo(
+            polygon[i].x,
+            polygon[i].y
+        );
+    }
+
+    ctx.closePath();
+
+    ctx.strokeStyle = "red";
+
+    ctx.lineWidth = 2;
+
+    ctx.stroke();
+
+    /*
+    Aplicar Scanline Fill
+    */
+    scanline.fill(
+        polygon,
+        "skyblue"
+    );
+}
+
 /**
  * ============================================================
  * EJEMPLO DE USO
@@ -360,37 +418,49 @@ const scanline = new ScanlineFill(ctx);
 //
 // ============================================================
 
-const polygon = [
-    { x: 100, y: 100 },
-    { x: 300, y: 120 },
-    { x: 350, y: 250 },
-    { x: 250, y: 350 },
-    { x: 120, y: 300 }
+const polygons = [
+
+    /*
+    Pentágono
+    */
+    [
+        { x: 100, y: 100 },
+        { x: 300, y: 120 },
+        { x: 350, y: 250 },
+        { x: 250, y: 350 },
+        { x: 120, y: 300 }
+    ],
+
+    /*
+    Hexágono
+    */
+    [
+        { x: 200, y: 80 },
+        { x: 350, y: 150 },
+        { x: 350, y: 300 },
+        { x: 200, y: 380 },
+        { x: 80, y: 300 },
+        { x: 80, y: 150 }
+    ],
+
+    /*
+    Polígono cóncavo
+    */
+    [
+        { x: 100, y: 100 },
+        { x: 300, y: 100 },
+        { x: 250, y: 200 },
+        { x: 350, y: 300 },
+        { x: 150, y: 350 },
+        { x: 80, y: 220 }
+    ]
 ];
 
 // ============================================================
 // DIBUJAR CONTORNO
 // ============================================================
 
-ctx.beginPath();
 
-ctx.moveTo(polygon[0].x, polygon[0].y);
-
-for (let i = 1; i < polygon.length; i++) {
-    ctx.lineTo(polygon[i].x, polygon[i].y);
-}
-
-ctx.closePath();
-
-ctx.strokeStyle = "red";
-ctx.lineWidth = 2;
-ctx.stroke();
-
-// ============================================================
-// APLICAR SCANLINE FILL
-// ============================================================
-
-scanline.fill(polygon, "skyblue");
 
 /**
  * ============================================================

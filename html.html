@@ -23,6 +23,27 @@ canvas{
 
 <h2>Algoritmo Scanline Fill</h2>
 
+<!-- Selector de polígonos -->
+<select id="polygonSelect">
+
+    <option value="0">
+        Pentágono
+    </option>
+
+    <option value="1">
+        Hexágono
+    </option>
+
+    <option value="2">
+        Polígono cóncavo
+    </option>
+
+</select>
+
+<button onclick="render()">
+    Dibujar
+</button>
+
 <canvas id="canvas" width="600" height="500"></canvas>
 
 <script src="script.js"></script>
